@@ -3,66 +3,44 @@ using UnityEngine.UI;
 
 public class RoomManager : MonoBehaviour
 {
-    public Image backgroundImage; // Referência à imagem de fundo
-    public Sprite[] roomSprites; // Lista de imagens das salas
-    public Button leftButton;  // Botão de retroceder
-    public Button rightButton; // Botão de avançar
-    public GameObject clickableArea; // Referência ao ClickableArea
-    public GameObject chave;
-    public GameObject faca;
+    public GameObject roomContainer; // Referência ao contêiner das salas
+    public float roomWidth = 1920f;  // Largura de cada sala (ajuste conforme o tamanho da sua sala)
+    public int totalRooms = 4;       // Número total de salas no jogo
+    public Button leftButton;        // Botão de retroceder
+    public Button rightButton;       // Botão de avançar
 
     private int currentRoomIndex = 0; // Índice da sala atual
 
     void Start()
     {
-        // Certifique-se de que a sala inicial está sendo exibida
-        if (roomSprites.Length > 0)
+        // Garante que a posição inicial do RoomContainer está correta
+        if (roomContainer != null)
         {
-            backgroundImage.sprite = roomSprites[currentRoomIndex];
+            roomContainer.transform.localPosition = Vector3.zero;
+        }
+        else
+        {
+            Debug.LogError("RoomContainer não foi atribuído no Inspector!");
         }
 
-        // Inicialmente, desativa o ClickableArea
-        if (clickableArea != null)
-        {
-            clickableArea.SetActive(true); // Desativa o ClickableArea
-            chave.SetActive(true);
-            faca.SetActive(false);
-        }
-
-        // Atualize os botões para refletir a sala inicial
+        // Atualiza os botões para refletir a sala inicial
         UpdateButtons();
     }
 
     // Função chamada para mudar de sala
     public void ChangeRoom(int roomIndex)
     {
-        if (roomIndex >= 0 && roomIndex < roomSprites.Length)
+        if (roomIndex >= 0 && roomIndex < totalRooms)
         {
             currentRoomIndex = roomIndex;
-            backgroundImage.sprite = roomSprites[roomIndex];
 
-            // Controla a visibilidade do ClickableArea baseado na sala
-            if (clickableArea != null)
-            {
-                // Desativa o ClickableArea antes de mudar de sala
-                clickableArea.SetActive(false);
-                chave.SetActive(false);
-                faca.SetActive(false);
+            // Calcula a nova posição X do RoomContainer
+            float targetPositionX = -roomWidth * roomIndex;
 
-                // Ativa o ClickableArea somente na sala 1 (ou a sala que você escolher)
-                if (currentRoomIndex == 0) // Exemplo: Ativa o ClickableArea apenas na sala 1
-                {
-                    clickableArea.SetActive(true); // Ativa o ClickableArea
-                    chave.SetActive(true);
-                }
+            // Move o RoomContainer para a nova posição
+            roomContainer.transform.localPosition = new Vector3(targetPositionX, 0, 0);
 
-                if (currentRoomIndex == 1)
-                {
-                    faca.SetActive(true);
-                }
-            }
-
-            // Atualiza os botões para refletir o novo estado da sala
+            // Atualiza os botões para refletir a nova sala
             UpdateButtons();
         }
         else
@@ -74,14 +52,12 @@ public class RoomManager : MonoBehaviour
     // Função chamada para ir para a próxima sala
     public void NextRoom()
     {
-        // Avança para a próxima sala, se possível
         ChangeRoom(currentRoomIndex + 1);
     }
 
     // Função chamada para retroceder para a sala anterior
     public void PreviousRoom()
     {
-        // Retrocede para a sala anterior, se possível
         ChangeRoom(currentRoomIndex - 1);
     }
 
@@ -89,6 +65,6 @@ public class RoomManager : MonoBehaviour
     public void UpdateButtons()
     {
         leftButton.interactable = currentRoomIndex > 0; // Ativa o botão apenas se não estiver na primeira sala
-        rightButton.interactable = currentRoomIndex < roomSprites.Length - 1; // Ativa o botão apenas se não estiver na última sala
+        rightButton.interactable = currentRoomIndex < totalRooms - 1; // Ativa o botão apenas se não estiver na última sala
     }
 }
