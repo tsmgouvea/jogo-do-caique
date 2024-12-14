@@ -8,6 +8,8 @@ public class RoomManager : MonoBehaviour
     public Button leftButton;  // Botão de retroceder
     public Button rightButton; // Botão de avançar
     public GameObject clickableArea; // Referência ao ClickableArea
+    public GameObject chave;
+    public GameObject faca;
 
     private int currentRoomIndex = 0; // Índice da sala atual
 
@@ -23,6 +25,8 @@ public class RoomManager : MonoBehaviour
         if (clickableArea != null)
         {
             clickableArea.SetActive(true); // Desativa o ClickableArea
+            chave.SetActive(true);
+            faca.SetActive(false);
         }
 
         // Atualize os botões para refletir a sala inicial
@@ -42,11 +46,19 @@ public class RoomManager : MonoBehaviour
             {
                 // Desativa o ClickableArea antes de mudar de sala
                 clickableArea.SetActive(false);
+                chave.SetActive(false);
+                faca.SetActive(false);
 
                 // Ativa o ClickableArea somente na sala 1 (ou a sala que você escolher)
                 if (currentRoomIndex == 0) // Exemplo: Ativa o ClickableArea apenas na sala 1
                 {
                     clickableArea.SetActive(true); // Ativa o ClickableArea
+                    chave.SetActive(true);
+                }
+
+                if (currentRoomIndex == 1)
+                {
+                    faca.SetActive(true);
                 }
             }
 
