@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 196610681}
   - component: {fileID: 196610680}
   - component: {fileID: 196610679}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Color paper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1518,6 +1518,8 @@ MonoBehaviour:
   inventoryPanel: {fileID: 1642141127}
   slotsPanel: {fileID: 1984011894}
   slotPrefab: {fileID: 1114516380331328045, guid: 07446c81a79497c4886b14d165733526, type: 3}
+  clickableArea: {fileID: 1071065724}
+  inventoryButton: {fileID: 950640427}
   itemPreview: {fileID: 477312098}
   itemDescription: {fileID: 678430174}
   avatarImage: {fileID: 1622989695}
