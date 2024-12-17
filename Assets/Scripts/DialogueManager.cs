@@ -33,6 +33,8 @@ public class DialogueManager : MonoBehaviour
         // Configurar o botão para avançar
         nextButton.onClick.AddListener(NextDialogueLine);
         dialoguePanel.SetActive(false);
+        GameState.IsModalActive = false; // Atualiza o estado global
+        ToggleInteractions(true); // Reativa botões
     }
 
     // Função chamada para iniciar o diálogo
@@ -48,8 +50,23 @@ public class DialogueManager : MonoBehaviour
 
         // Exibir a primeira linha
         dialoguePanel.SetActive(true);
+        GameState.IsModalActive = true; // Atualiza o estado global
+        ToggleInteractions(false); // Desativa botões
         DisplayDialogueLine();
     }
+    private void ToggleInteractions(bool enable)
+    {
+        var buttons = FindObjectsByType<UnityEngine.UI.Button>(FindObjectsSortMode.None);
+
+        foreach (var button in buttons)
+        {
+            if (button == nextButton)
+                continue; // Ignora desativar o `nextButton`
+
+            button.interactable = enable;
+        }
+    }
+
 
     // Função que exibe o próximo texto do diálogo
     void DisplayDialogueLine()
@@ -109,6 +126,8 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         dialoguePanel.SetActive(false); // Desativa o painel de diálogo
+        GameState.IsModalActive = false; // Atualiza o estado global
+        ToggleInteractions(true); // Reativa botões
 
         characterImage.sprite = null; // Limpa a imagem do personagem
         characterNameText.text = ""; // Limpa o nome do personagem

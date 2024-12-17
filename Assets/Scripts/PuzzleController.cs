@@ -25,7 +25,7 @@ public class PuzzleController : MonoBehaviour
         inputSequence.Add(color);
 
         // Verifica se a sequência já foi completada
-        if (inputSequence.Count == correctSequence.Count)
+        if (inputSequence.Count == correctSequence.Count || GameState.IsModalActive)
         {
             CheckSequence();
         }

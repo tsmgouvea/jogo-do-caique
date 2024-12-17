@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using TMPro;
 using static UnityEditor.Progress;
 
+
 public class Inventory : MonoBehaviour
 {
     // Referências ao painel do inventário e ao painel interno dos slots
     public GameObject inventoryPanel; // Painel principal do inventário
     public GameObject slotsPanel;     // Painel interno onde os slots serão colocados
     public GameObject slotPrefab;     // Prefab do slot vazio
+    public GameObject clickableArea;
+    public Button inventoryButton;
     public Image itemPreview;          // Imagem de pré-visualização do item
     public TextMeshProUGUI itemDescription; // Texto para descrição do item
     public Image avatarImage;         // Avatar do jogador
@@ -40,7 +43,40 @@ public class Inventory : MonoBehaviour
     // Função para alternar o estado de visibilidade do inventário
     public void ToggleInventory()
     {
-        inventoryPanel.SetActive(!inventoryPanel.activeSelf);
+        bool isActive = !inventoryPanel.activeSelf;
+        inventoryPanel.SetActive(isActive);
+        GameState.IsModalActive = isActive; // Atualiza o estado global
+        ToggleInteractions(!isActive); // Desativa ou ativa os botões
+    }
+
+    private void ToggleInteractions(bool enable)
+    {
+        var buttons = FindObjectsByType<UnityEngine.UI.Button>(FindObjectsSortMode.None);
+
+        clickableArea.SetActive(enable);
+
+        foreach (var button in buttons)
+        {
+            
+            // Verifica se o botão é o InventoryButton
+            if (button == inventoryButton) // Assumindo que você tem uma referência pública do InventoryButton
+                continue; // Não desativa o botão do inventário
+
+            // Verifica se o botão é de um slot ou deve permanecer ativo
+            bool isSlotButton = slots.Exists(slot => button == slot.GetComponent<Button>());
+
+            if (isSlotButton)
+                continue; // Ignora a desativação dos botões de slots
+
+            button.interactable = enable;
+        }
+
+        // Desativa objetos clicáveis com BoxCollider2D
+        var colliders2D = FindObjectsByType<BoxCollider2D>(FindObjectsSortMode.None);
+        foreach (var collider in colliders2D)
+        {
+            collider.enabled = enable; // Ativa ou desativa o BoxCollider2D
+        }
     }
 
     // Função para adicionar um item ao primeiro slot vazio
