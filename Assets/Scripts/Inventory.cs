@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
+using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class Inventory : MonoBehaviour
     public GameObject inventoryPanel; // Painel principal do inventário
     public GameObject slotsPanel;     // Painel interno onde os slots serão colocados
     public GameObject slotPrefab;     // Prefab do slot vazio
+    public Image itemPreview;          // Imagem de pré-visualização do item
+    public TextMeshProUGUI itemDescription; // Texto para descrição do item
     public Image avatarImage;         // Avatar do jogador
     public int numberOfSlots = 6;    // Número total de slots no inventário
 
@@ -41,7 +44,7 @@ public class Inventory : MonoBehaviour
     }
 
     // Função para adicionar um item ao primeiro slot vazio
-    public void AddItem(string itemName, Sprite newItemIcon)
+    public void AddItem(string itemName, Sprite newItemIcon, string itemDescriptionText)
     {
         if (!collectedItems.Contains(itemName))
         {
@@ -68,7 +71,12 @@ public class Inventory : MonoBehaviour
                     Button slotButton = slot.GetComponent<Button>();
                     if (slotButton != null)
                     {
-                        slotButton.onClick.AddListener(() => UseItem(itemName));
+                        slotButton.onClick.RemoveAllListeners();
+                        slotButton.onClick.AddListener(() =>
+                        {
+                            ShowItemDetails(new Item { name = itemName, description = itemDescriptionText, icon = newItemIcon });
+                        });
+
                     }
 
                     return; // Sai após preencher o primeiro slot vazio
@@ -79,10 +87,36 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    // Função para exibir os detalhes de um item
+    public void ShowItemDetails(Item item)
+    {
+        if (item != null)
+        {
+            itemPreview.sprite = item.icon;
+            itemPreview.enabled = true; // Ativa a imagem do ícone
+            itemDescription.text = item.description;
+        }
+        else
+        {
+            itemPreview.sprite = null;
+            itemPreview.enabled = false; // Oculta a imagem do ícone
+            itemDescription.text = "Slot vazio";
+        }
+    }
+
     // Função chamada ao usar o item (a lógica pode ser expandida conforme necessário)
     void UseItem(string itemName)
     {
         Debug.Log("Usando o item: " + itemName);
         // Aqui você pode adicionar a lógica de efeito do item, como alterar o avatar, etc.
     }
+}
+
+
+[System.Serializable]
+public class Item
+{
+    public string name;
+    public string description;
+    public Sprite icon;
 }
