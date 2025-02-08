@@ -3,17 +3,16 @@ using UnityEngine.UI;
 
 public class RoomManager : MonoBehaviour
 {
-    public GameObject roomContainer; // Referência ao contêiner das salas
-    public float roomWidth = 1920f;  // Largura de cada sala (ajuste conforme o tamanho da sua sala)
-    public int totalRooms = 4;       // Número total de salas no jogo
-    public Button leftButton;        // Botão de retroceder
-    public Button rightButton;       // Botão de avançar
+    public GameObject roomContainer; // Container das salas
+    public float roomWidth = 1920f;  // Largura de cada sala
+    public float roomHeight = 1080f; // Altura de cada sala
+    public int totalRooms = 6;       // Número total de salas
+    public int roomsPerRow = 3;      // Número de salas por linha (para grade)
 
     private int currentRoomIndex = 0; // Índice da sala atual
 
     void Start()
     {
-        // Garante que a posição inicial do RoomContainer está correta
         if (roomContainer != null)
         {
             roomContainer.transform.localPosition = Vector3.zero;
@@ -22,49 +21,28 @@ public class RoomManager : MonoBehaviour
         {
             Debug.LogError("RoomContainer não foi atribuído no Inspector!");
         }
-
-        // Atualiza os botões para refletir a sala inicial
-        UpdateButtons();
     }
 
-    // Função chamada para mudar de sala
+    // Função para mudar diretamente para uma sala específica
     public void ChangeRoom(int roomIndex)
     {
         if (roomIndex >= 0 && roomIndex < totalRooms)
         {
             currentRoomIndex = roomIndex;
 
-            // Calcula a nova posição X do RoomContainer
-            float targetPositionX = -roomWidth * roomIndex;
+            // Calcula a posição correta na grade
+            int row = roomIndex / roomsPerRow;  // Descobre a linha
+            int col = roomIndex % roomsPerRow;  // Descobre a coluna
+
+            float targetPositionX = -roomWidth * col;
+            float targetPositionY = roomHeight * row;  // Movendo para baixo (positivo)
 
             // Move o RoomContainer para a nova posição
-            roomContainer.transform.localPosition = new Vector3(targetPositionX, 0, 0);
-
-            // Atualiza os botões para refletir a nova sala
-            UpdateButtons();
+            roomContainer.transform.localPosition = new Vector3(targetPositionX, targetPositionY, 0);
         }
         else
         {
             Debug.LogWarning("Índice da sala é inválido!");
         }
-    }
-
-    // Função chamada para ir para a próxima sala
-    public void NextRoom()
-    {
-        ChangeRoom(currentRoomIndex + 1);
-    }
-
-    // Função chamada para retroceder para a sala anterior
-    public void PreviousRoom()
-    {
-        ChangeRoom(currentRoomIndex - 1);
-    }
-
-    // Função para atualizar os botões com base na sala atual
-    public void UpdateButtons()
-    {
-        leftButton.interactable = currentRoomIndex > 0; // Ativa o botão apenas se não estiver na primeira sala
-        rightButton.interactable = currentRoomIndex < totalRooms - 1; // Ativa o botão apenas se não estiver na última sala
     }
 }
