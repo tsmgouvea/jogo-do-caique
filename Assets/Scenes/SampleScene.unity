@@ -527,6 +527,7 @@ RectTransform:
   - {fileID: 1068438479}
   - {fileID: 449355698}
   - {fileID: 1164619435}
+  - {fileID: 1033241315}
   m_Father: {fileID: 1242325832}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1129,7 +1130,7 @@ GameObject:
   - component: {fileID: 477312096}
   - component: {fileID: 477312097}
   - component: {fileID: 477312098}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: ItemPreview
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1441,6 +1442,7 @@ RectTransform:
   m_Children:
   - {fileID: 1680746424}
   - {fileID: 984436591}
+  - {fileID: 979726504}
   m_Father: {fileID: 252302140}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1634,7 +1636,7 @@ GameObject:
   - component: {fileID: 678430172}
   - component: {fileID: 678430173}
   - component: {fileID: 678430174}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: ItemDescription
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1991,7 +1993,7 @@ GameObject:
   - component: {fileID: 773611973}
   - component: {fileID: 773611975}
   - component: {fileID: 773611974}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: ItemPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2088,9 +2090,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomContainer: {fileID: 252302139}
   roomWidth: 1920
-  totalRooms: 4
-  leftButton: {fileID: 979726505}
-  rightButton: {fileID: 1550926542}
+  roomHeight: 1080
+  totalRooms: 5
+  roomsPerRow: 3
 --- !u!4 &785751808
 Transform:
   m_ObjectHideFlags: 0
@@ -2388,6 +2390,8 @@ GameObject:
   - component: {fileID: 979726507}
   - component: {fileID: 979726506}
   - component: {fileID: 979726505}
+  - component: {fileID: 979726508}
+  - component: {fileID: 979726509}
   m_Layer: 5
   m_Name: LeftButton
   m_TagString: Untagged
@@ -2403,15 +2407,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 979726503}
   m_LocalRotation: {x: 0.008726558, y: -0, z: -0, w: 0.999962}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1242325832}
+  m_Father: {fileID: 520495504}
   m_LocalEulerAnglesHint: {x: 1, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -826.2793, y: -434.35}
+  m_AnchoredPosition: {x: 771, y: -113}
   m_SizeDelta: {x: 95.19, y: 87.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &979726505
@@ -2460,12 +2464,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 785751807}
         m_TargetAssemblyTypeName: RoomManager, Assembly-CSharp
-        m_MethodName: PreviousRoom
-        m_Mode: 1
+        m_MethodName: ChangeRoom
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: ' RoomManager.PreviousRoom().'
           m_BoolArgument: 0
@@ -2508,6 +2512,76 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 979726503}
   m_CullTransparentMesh: 1
+--- !u!114 &979726508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979726503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d27cd0111cd21349ad7e3ef2b28dc1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 1092160842}
+  dialogueLines:
+  - oi
+  - tudo bem?
+  characterNames:
+  - caique
+  - davi
+  characterSprites:
+  - {fileID: 7152930139536384079, guid: 85857384abff6d449a07f2f7192b376f, type: 3}
+  - {fileID: 6083806894379148034, guid: 5a36278aad90fe6489a16a23661bd70a, type: 3}
+  roomManager: {fileID: 785751807}
+  valorSala: 4
+--- !u!61 &979726509
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979726503}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.3021431, y: 0.1816101}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 94.65151, y: 87.05127}
+  m_EdgeRadius: 0
 --- !u!1 &984436590
 GameObject:
   m_ObjectHideFlags: 0
@@ -2590,6 +2664,81 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984436590}
+  m_CullTransparentMesh: 1
+--- !u!1 &1033241314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1033241315}
+  - component: {fileID: 1033241317}
+  - component: {fileID: 1033241316}
+  m_Layer: 5
+  m_Name: Sala5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1033241315
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033241314}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 252302140}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1920, y: -1080}
+  m_SizeDelta: {x: 1920, y: 1080}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1033241316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033241314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 6434691835316860506, guid: c8078b07c1dff3343841c827f18b616f, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1033241317
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033241314}
   m_CullTransparentMesh: 1
 --- !u!1 &1048177409
 GameObject:
@@ -2778,6 +2927,7 @@ RectTransform:
   - {fileID: 306531261}
   - {fileID: 1741977152}
   - {fileID: 368817208}
+  - {fileID: 1550926541}
   m_Father: {fileID: 252302140}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2870,6 +3020,8 @@ MonoBehaviour:
   - {fileID: 7152930139536384079, guid: 85857384abff6d449a07f2f7192b376f, type: 3}
   - {fileID: 7152930139536384079, guid: 85857384abff6d449a07f2f7192b376f, type: 3}
   - {fileID: 6083806894379148034, guid: 5a36278aad90fe6489a16a23661bd70a, type: 3}
+  roomManager: {fileID: 0}
+  valorSala: 0
 --- !u!61 &1071065726
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3147,7 +3299,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5760, y: 0}
+  m_AnchoredPosition: {x: 0, y: -1080}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1164619436
@@ -3220,8 +3372,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 252302140}
-  - {fileID: 979726504}
-  - {fileID: 1550926541}
   - {fileID: 950640426}
   - {fileID: 1591138049}
   - {fileID: 1642141128}
@@ -3696,16 +3846,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1550926540}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1242325832}
+  m_Father: {fileID: 1068438479}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 819, y: -431.82}
+  m_AnchoredPosition: {x: -755, y: 25}
   m_SizeDelta: {x: 96.73, y: 92.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1550926542
@@ -3754,12 +3904,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 785751807}
         m_TargetAssemblyTypeName: RoomManager, Assembly-CSharp
-        m_MethodName: NextRoom
-        m_Mode: 1
+        m_MethodName: ChangeRoom
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: RoomManager.NextRoom().
           m_BoolArgument: 0
@@ -3893,7 +4043,7 @@ GameObject:
   - component: {fileID: 1622989697}
   - component: {fileID: 1622989696}
   - component: {fileID: 1622989695}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: AvatarIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3968,7 +4118,7 @@ GameObject:
   - component: {fileID: 1642141128}
   - component: {fileID: 1642141130}
   - component: {fileID: 1642141129}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: InventoryPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4807,7 +4957,7 @@ GameObject:
   - component: {fileID: 1984011898}
   - component: {fileID: 1984011897}
   - component: {fileID: 1984011896}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: SlotsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
