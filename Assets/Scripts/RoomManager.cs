@@ -9,6 +9,7 @@ public class RoomManager : MonoBehaviour
     public int totalRooms = 6;       // Número total de salas
     public int roomsPerRow = 3;      // Número de salas por linha (para grade)
 
+
     private int currentRoomIndex = 0; // Índice da sala atual
 
     void Start()
@@ -16,6 +17,7 @@ public class RoomManager : MonoBehaviour
         if (roomContainer != null)
         {
             roomContainer.transform.localPosition = Vector3.zero;
+
         }
         else
         {
