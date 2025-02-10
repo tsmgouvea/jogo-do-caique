@@ -3007,8 +3007,8 @@ MonoBehaviour:
   dialogueManager: {fileID: 1092160842}
   dialogueLines:
   - "Ol\xE1 Jogador, Seja Bem Vindo!"
-  - "O Caique \xE9 viado!!!!"
-  - E vai casar com o Carrilho.
+  - asldaldadladladaldlad
+  - uuuuuuuuuuuuuu
   - Coco de pomba.
   characterNames:
   - Tiffany
@@ -4403,7 +4403,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.115}
+    oldSize: {x: 2.56, y: 2.23}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
