@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 76d30963eb6d6f14c90a7ee44e6ed48e
+guid: e1895b3816a82ba4190f1d29ec4d488f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -543554908553241875
-    second: CUTSCENE CENA 2_0
+      213: -319853199334465546
+    second: Parede com puzzle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,7 +126,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CUTSCENE CENA 2_0
+      name: Parede com puzzle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dea93c7c0b7e478f0800000000000000
-      internalID: -543554908553241875
+      spriteID: 6ff9569b537af8bf0800000000000000
+      internalID: -319853199334465546
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      CUTSCENE CENA 2_0: -543554908553241875
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
