@@ -2,7 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
-using static UnityEditor.Progress;
+
+
+
 
 
 public class Inventory : MonoBehaviour
