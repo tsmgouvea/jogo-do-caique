@@ -10,7 +10,9 @@ public class PuzzleController : MonoBehaviour
     public List<Color> inputSequence; // Sequência que o jogador insere
     public GameObject panelOrder; // Painel com a sequência de cores na cena
     public TextMeshProUGUI resultText; // Texto para mostrar se acertou ou errou
-
+    public GameObject door; // Ativa o gameobject
+    public GameObject doorDialogue; // desativa o dialogo da porta
+    public AudioSource incorrectSound;
     private void Start()
     {
         // Garante que a sequência de entrada comece vazia
@@ -38,12 +40,16 @@ public class PuzzleController : MonoBehaviour
             if (inputSequence[i] != correctSequence[i])
             {
                 resultText.text = "Errado! Tente novamente!";
+                incorrectSound.Play();
                 inputSequence.Clear();
                 return;
             }
         }
 
         resultText.text = "Correto! Puzzle Resolvido!";
+        door.SetActive(true);
+        doorDialogue.SetActive(false);
+
         // Aqui você pode adicionar lógica para prosseguir no jogo
     }
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class RoomManager : MonoBehaviour
@@ -47,4 +48,9 @@ public class RoomManager : MonoBehaviour
             Debug.LogWarning("Índice da sala é inválido!");
         }
     }
+    public void ChangeScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
 }
